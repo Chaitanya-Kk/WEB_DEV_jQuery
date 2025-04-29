@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery To-Do List Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            margin: 0;
+            color: #333;
+        }
+        .todo-container {
+            background: #fff;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #74ebd5;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #acb6e5;
+        }
+        button {
+            background: #74ebd5;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #acb6e5;
+            transform: scale(1.05);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        li.completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+            background: #e0e0e0;
+        }
+        li button {
+            background: #ff6b6b;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        li button:hover {
+            background: #ff8787;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add task with animation
+            $('#addTask').click(function() {
+                let task = $('#taskInput').val().trim();
+                if (task) {
+                    let taskItem = $(`
+                        <li>
+                            ${task}
+                            <button class="complete">Complete</button>
+                        </li>
+                    `).hide();
+                    $('#taskList').append(taskItem);
+                    taskItem.slideDown(300); // Slide in animation
+                    $('#taskInput').val('').focus(); // Clear and refocus input
+                }
+            });
+
+            // Handle task completion with animation
+            $('#taskList').on('click', '.complete', function() {
+                let $li = $(this).parent();
+                $li.addClass('completed').fadeOut(300, function() {
+                    $(this).appendTo('#taskList').fadeIn(300); // Move to bottom
+                    $(this).find('.complete').remove(); // Remove button
+                });
+            });
+
+            // Allow pressing Enter to add task
+            $('#taskInput').keypress(function(e) {
+                if (e.which === 13) {
+                    $('#addTask').click();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="todo-container">
+        <h1>jQuery To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter a task...">
+        <button id="addTask">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+</body>
+</html>
