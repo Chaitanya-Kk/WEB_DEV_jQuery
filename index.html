@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery</title>
+    <title>Ultimate jQuery Fusion</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -21,6 +21,10 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -414,20 +418,47 @@
         .iframe-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 1200px;
             margin: 20px auto;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            background: rgba(10, 10, 20, 0.9);
-            padding: 10px;
+            box-shadow: 0 6px 15px rgba(0, 196, 255, 0.2);
+            background: rgba(20, 20, 40, 0.9);
+            padding: 20px;
         }
 
         .iframe-container iframe {
             width: 100%;
-            height: 500px;
+            height: 675px; /* 1200px width * (9/16) for 16:9 aspect ratio */
             border: none;
             border-radius: 8px;
+        }
+
+        @media (max-width: 1200px) {
+            .iframe-container {
+                padding: 15px;
+            }
+            .iframe-container iframe {
+                height: calc(100vw * 9 / 16); /* Maintain 16:9 aspect ratio */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .iframe-container {
+                padding: 10px;
+            }
+            .iframe-container iframe {
+                height: calc(100vw * 9 / 16);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .iframe-container {
+                padding: 5px;
+            }
+            .iframe-container iframe {
+                height: calc(100vw * 9 / 16);
+            }
         }
 
         @keyframes particleFade {
@@ -446,6 +477,100 @@
             outline-offset: 2px;
         }
 
+        /* Table of Contents */
+        .toc {
+            padding: 30px;
+            background: rgba(20, 20, 40, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 196, 255, 0.2);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .toc:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 196, 255, 0.4);
+        }
+
+        .toc h2 {
+            font-size: 2.2em;
+            color: #00c4ff;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .toc h2::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #00c4ff, #007bff);
+            transition: width 0.3s;
+        }
+
+        .toc:hover h2::after {
+            width: 100px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc ul li {
+            margin: 10px 0;
+        }
+
+        .toc ul li a {
+            color: #d0d0e0;
+            font-size: 1.2em;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 8px;
+            background: rgba(10, 10, 20, 0.8);
+        }
+
+        .toc ul li a:hover {
+            color: #00c4ff;
+            transform: translateX(10px);
+            background: rgba(0, 196, 255, 0.1);
+        }
+
+        .toc ul li a:focus {
+            outline: 3px solid #00c4ff;
+            outline-offset: 2px;
+            color: #00c4ff;
+        }
+
+        @media (max-width: 768px) {
+            .toc {
+                padding: 20px;
+            }
+            .toc h2 {
+                font-size: 1.8em;
+            }
+            .toc ul li a {
+                font-size: 1em;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .toc {
+                padding: 15px;
+            }
+            .toc h2::after {
+                width: 30px;
+            }
+            .toc:hover h2::after {
+                width: 60px;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             header h1 { font-size: 2.5em; }
@@ -455,7 +580,6 @@
             .demo-area { padding: 15px; }
             #fadeBox, #animateBox, #hoverBox, #ajaxBox { width: 100px; height: 100px; }
             .uiverse-btn { padding: 8px 16px; font-size: 0.9em; }
-            .iframe-container iframe { height: 400px; }
         }
 
         @media (max-width: 480px) {
@@ -465,30 +589,31 @@
             section:hover h2::after { width: 60px; }
             .code-example { font-size: 0.8em; padding: 15px; }
         }
+
         .jquery-logo {
-    display: block;
-    margin: 0 auto 30px;
-    max-width: 900px;
-    height: auto;
-    transition: transform 0.3s, opacity 0.3s;
-}
+            display: block;
+            margin: 0 auto 30px;
+            max-width: 900px;
+            height: auto;
+            transition: transform 0.3s, opacity 0.3s;
+        }
 
-.jquery-logo:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
+        .jquery-logo:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
 
-@media (max-width: 768px) {
-    .jquery-logo {
-        max-width: 150px;
-    }
-}
+        @media (max-width: 768px) {
+            .jquery-logo {
+                max-width: 150px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .jquery-logo {
-        max-width: 120px;
-    }
-}
+        @media (max-width: 480px) {
+            .jquery-logo {
+                max-width: 120px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -496,11 +621,25 @@
     <div class="container">
         <header class="fade-in">
             <img src="jquery.png" alt="jQuery Logo" class="jquery-logo">
-        
             <h3>Explore jQuery's power to create dynamic, interactive web experiences with seamless DOM manipulation,<br> animations, and AJAX.</h3>
+            <br><h4>Presented By</h4><h2>VITPUNE - CSAI - B3 - Group 12</h2>
         </header>
 
-        <section class="slide-in-left">
+        <section class="toc fade-in">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#what-is-jquery">What is jQuery?</a></li>
+                <li><a href="#why-jquery">Why Choose jQuery?</a></li>
+                <li><a href="#case-study">Case Study</a></li>
+                <li><a href="#fade-effects">Fade Effects</a></li>
+                <li><a href="#custom-animations">Custom Animations</a></li>
+                <li><a href="#hover-interactions">Hover Interactions</a></li>
+                <li><a href="#ajax">AJAX in Action</a></li>
+                <li><a href="#try-jquery">Bonus Segment</a></li>
+            </ul>
+        </section>
+
+        <section id="what-is-jquery" class="slide-in-left">
             <h2>What is jQuery?</h2>
             <p>jQuery is a fast, lightweight JavaScript library that simplifies DOM manipulation, event handling, animations, and AJAX. Its intuitive API and extensive plugin ecosystem make it ideal for building modern web applications.</p>
             <div class="demo-area">
@@ -515,10 +654,12 @@ $(document).ready(function() {
             </div>
             <br>
             <br>
-           
+            <div class="iframe-container">
+                <iframe width="1200" height="675" src="https://www.youtube.com/embed/UU-GebNqdbg?si=Jo0lEk9l2TrIjRpL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         </section>
 
-        <section class="slide-in-right">
+        <section id="why-jquery" class="slide-in-right">
             <h2>Why Choose jQuery for Your Web Development Needs?</h2>
             <ul>
                 <li><strong>Simple and Intuitive Syntax:</strong> jQuery is built on the principle of "write less, do more," making it incredibly easy to use. Its simple and intuitive syntax allows developers to perform complex tasks like DOM manipulation, event handling, and animations with just a few lines of code.</li>
@@ -532,7 +673,7 @@ $(document).ready(function() {
             </ul>
         </section>
 
-        <section class="zoom-in">
+        <section id="case-study" class="zoom-in">
             <h2>Case Study: Enhancing Web Application Interactivity with jQuery</h2>
             <h3>Background</h3>
             <p>A system administrator developed a PHP-based intranet web application hosted on an Amazon EC2 instance. Its primary purpose was to accept user inputs and initiate long-running server-side QA deployment processes. However, the challenge was providing real-time feedback to users about the process's progress without requiring manual page refreshes, ensuring a seamless and efficient experience.</p>
@@ -564,7 +705,7 @@ $(document).ready(function() {
             <p>This case study demonstrates the versatility and efficiency of jQuery in enhancing web applications. Its ability to integrate asynchronous operations and dynamic content updates seamlessly makes it an ideal choice for improving functionality and user experience in both modern and legacy systems.</p>
         </section>
 
-        <section class="rotate-in">
+        <section id="fade-effects" class="rotate-in">
             <h2>Fade Effects</h2>
             <p>Use <code>.fadeIn()</code> and <code>.fadeOut()</code> for smooth visibility transitions. Try the buttons below.</p>
             <div class="demo-area">
@@ -585,7 +726,7 @@ $(document).ready(function() {
             <p><strong>Why It Matters:</strong> jQuery's fade methods provide a consistent, browser-agnostic way to animate opacity.</p>
         </section>
 
-        <section class="fade-in">
+        <section id="custom-animations" class="fade-in">
             <h2>Custom Animations</h2>
             <p>Create dynamic transitions with <code>.animate()</code>. Click to morph the box's size and shape.</p>
             <div class="demo-area">
@@ -614,7 +755,7 @@ $(document).ready(function() {
             <p><strong>Why It Matters:</strong> jQuery simplifies complex animations with chained transitions and built-in easing.</p>
         </section>
 
-        <section class="slide-in-left">
+        <section id="hover-interactions" class="slide-in-left">
             <h2>Hover Interactions</h2>
             <p>Use <code>.hover()</code> for responsive effects. Hover over the box to see it transform.</p>
             <div class="demo-area">
@@ -641,7 +782,7 @@ $(document).ready(function() {
             <p><strong>Why It Matters:</strong> jQuery's hover method ensures smooth, cross-browser mouse interactions.</p>
         </section>
 
-        <section class="slide-in-right">
+        <section id="ajax" class="slide-in-right">
             <h2>AJAX in Action</h2>
             <p>jQuery's <code>.ajax()</code> simplifies asynchronous data fetching. Click to fetch a random quote.</p>
             <div class="demo-area">
@@ -652,7 +793,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("#ajaxBtn").click(function() {
         $.ajax({
-            url: "https://api.quotable.io/random',
+            url: "https://api.quotable.io/random",
             success: function(data) {
                 $("#ajaxBox").fadeOut(500, function() {
                     $(this).text(data.content).fadeIn(500);
@@ -670,7 +811,7 @@ $(document).ready(function() {
             <p><strong>Why It Matters:</strong> jQuery's AJAX methods streamline XMLHttpRequest with robust error handling.</p>
         </section>
 
-        <section class="zoom-in">
+        <section id="try-jquery" class="zoom-in">
             <h2>Try jQuery Now</h2>
             <p>Add jQuery via CDN and explore its documentation. Test the enhanced To-Do List below, now with task persistence!</p>
             
@@ -678,7 +819,7 @@ $(document).ready(function() {
                 <iframe src="main.html"></iframe>
             </div>
             <div class="code-example">
-                Check Out the Code to this amazing project at https://nonstop-babcat-982.notion.site/Demo-For-jQuery-using-a-To-Do-List-1e4abd46418380a19565fc9e382171c5?pvs=4
+                Check Out the Code to this amazing project at<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://bit.ly/Demo_jQuery
             </div>
             <br><p><strong>Why It Matters:</strong> This enhanced to-do list uses jQuery for DOM manipulation, animations, and event delegation, with localStorage for persistence and a delete feature for better usability.</p>
             <div class="demo-area">
@@ -777,7 +918,7 @@ $(document).ready(function() {
             $("#hoverBox").hover(
                 function() {
                     $(this).css({
-                        transform: "scale(LIGHTWEIGHT AND FAST) rotate(3deg)",
+                        transform: "scale(1.2) rotate(3deg)",
                         boxShadow: "0 8px 20px rgba(255, 107, 107, 0.5)"
                     });
                 },
